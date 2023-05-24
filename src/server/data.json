@@ -1,0 +1,80 @@
+[
+  {
+    "id": 0,
+    "name": "Document 1",
+    "pages": [
+      {
+        "page": 1,
+        "image": "1.png"
+      },
+      {
+        "page": 2,
+        "image": "2.png"
+      },
+      {
+        "page": 3,
+        "image": "3.png"
+      },
+      {
+        "page": 4,
+        "image": "4.png"
+      },
+      {
+        "page": 5,
+        "image": "5.png"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Document 2",
+    "pages": [
+      {
+        "page": 1,
+        "image": "1.png"
+      },
+      {
+        "page": 2,
+        "image": "2.png"
+      },
+      {
+        "page": 3,
+        "image": "3.png"
+      },
+      {
+        "page": 4,
+        "image": "4.png"
+      },
+      {
+        "page": 5,
+        "image": "5.png"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Document 3",
+    "pages": [
+      {
+        "page": 1,
+        "image": "1.png"
+      },
+      {
+        "page": 2,
+        "image": "2.png"
+      },
+      {
+        "page": 3,
+        "image": "3.png"
+      },
+      {
+        "page": 4,
+        "image": "4.png"
+      },
+      {
+        "page": 5,
+        "image": "5.png"
+      }
+    ]
+  }
+]

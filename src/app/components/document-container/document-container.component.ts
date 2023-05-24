@@ -1,4 +1,4 @@
-import { Component, ComponentRef, ElementRef, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ElementRef, Input, ViewChild } from '@angular/core';
 
 import { ICoords } from "../../models/coords.interface";
 import { DynamicChildLoaderDirective } from "../../directives/dynamic-child-loader.directive";
@@ -13,6 +13,8 @@ import { IAnnotation } from "../../models/annotation.interface";
   styleUrls: ['./document-container.component.scss']
 })
 export class DocumentContainerComponent {
+
+  @Input() contentImage: string;
 
   @ViewChild(DynamicChildLoaderDirective, { static: true })
   dynamicChild!: DynamicChildLoaderDirective;
@@ -30,7 +32,7 @@ export class DocumentContainerComponent {
     this.annotationSelectRef.instance.createAnnotationEmitter.subscribe(annotation => {
       this.destroyDynamicAnnotation();
       this.loadDynamicAnnotation(annotation);
-    })
+    });
   }
   private destroyDynamicAnnotation() {
     this.isAnnotationModalActive = false;
@@ -54,6 +56,7 @@ export class DocumentContainerComponent {
   public documentClick(event: MouseEvent) {
     const target = event.target as Element;
     if(target.classList.contains('document_container')) {
+      console.log({x: event.offsetX, y: event.offsetY})
       const coords: ICoords = {x: event.offsetX, y: event.offsetY};
       if(!this.isAnnotationModalActive){
         this.loadDynamicAnnotationSelection(coords);

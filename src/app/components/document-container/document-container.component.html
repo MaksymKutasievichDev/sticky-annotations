@@ -1,9 +1,13 @@
+<div class="wrapper">
 <div
   class="document_container"
   (mousedown)="documentClick($event)"
   #documentContainer
 >
-  <ng-template
-    dynamicChildLoader
-  ></ng-template>
+  <ng-template dynamicChildLoader></ng-template>
+  <img
+    src="assets/pages/{{contentImage}}"
+    alt=""
+  >
+</div>
 </div>

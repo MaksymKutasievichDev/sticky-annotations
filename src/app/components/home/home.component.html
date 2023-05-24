@@ -1,0 +1,10 @@
+<div class="home">
+  <div class="items">
+    <a
+      [routerLink]="'document/' + document.id"
+      class="item"
+      *ngFor="let document of documents">
+      {{document.name}}
+    </a>
+  </div>
+</div>

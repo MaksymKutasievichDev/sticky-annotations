@@ -12,6 +12,8 @@ import { AnnotationComponent } from './components/annotation/annotation.componen
 import { AnnotationTextComponent } from './components/annotation/annotation-text/annotation-text.component';
 import { AnnotationImageComponent } from './components/annotation/annotation-image/annotation-image.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { HomeComponent } from './components/home/home.component';
+import { PagesComponent } from './components/pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     AnnotationComponent,
     AnnotationTextComponent,
     AnnotationImageComponent,
+    HomeComponent,
+    PagesComponent,
   ],
   imports: [
     BrowserModule,
