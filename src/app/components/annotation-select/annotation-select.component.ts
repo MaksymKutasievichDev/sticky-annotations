@@ -13,6 +13,7 @@ export class AnnotationSelectComponent {
   public annotationOptions: IAnnotationsOptions[] = annotationOptionsConst;
 
   @Input() coords: ICoords;
+  @Input() page: number;
 
   @Output() createAnnotationEmitter: EventEmitter<IAnnotation> = new EventEmitter<IAnnotation>();
 
@@ -21,6 +22,8 @@ export class AnnotationSelectComponent {
   public createAnnotation(type: EAnnotationType) {
     this.createAnnotationEmitter.emit({
       type,
+      content: '',
+      page: this.page,
       position: {
         x: this.coords.x,
         y: this.coords.y

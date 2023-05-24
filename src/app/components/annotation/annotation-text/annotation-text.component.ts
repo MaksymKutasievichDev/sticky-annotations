@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from "@angular/forms";
+import { IAnnotation } from "../../../models/annotation.interface";
 
 @Component({
   selector: 'app-annotation-text',
   templateUrl: './annotation-text.component.html',
   styleUrls: ['./annotation-text.component.scss']
 })
-export class AnnotationTextComponent implements OnInit {
+export class AnnotationTextComponent {
 
-  constructor() { }
+  inputField: FormControl = new FormControl<string>('');
 
-  ngOnInit(): void {
+  @Input() annotation: IAnnotation;
+  @Output() updatedTextEmitter = new EventEmitter<string>();
+
+  updateText() {
+    this.updatedTextEmitter.emit(this.inputField.value);
   }
-
 }

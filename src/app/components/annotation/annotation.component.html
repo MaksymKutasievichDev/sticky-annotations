@@ -1,15 +1,27 @@
 <div
   class="annotation"
   [ngClass]="{'dragging': isDragging}"
-  #annotation
+  #annotationRef
   (mousedown)="startDragging($event)"
   (mousemove)="isDragging ? dragging($event) : ''"
-  (mouseup)="stopDragging($event)"
-  (mouseout)="stopDragging($event)"
+  (mouseup)="stopDragging()"
+  (mouseout)="stopDragging()"
   [ngStyle]="{
     'left': coords.x + 'px',
     'top': coords.y + 'px'
   }"
 >
-  Hopa im here
+  <ng-container [ngSwitch]="type">
+
+    <app-annotation-text
+      [annotation]="annotation"
+      *ngSwitchCase="'text'"
+    ></app-annotation-text>
+
+    <app-annotation-image
+      [annotation]="annotation"
+      *ngSwitchCase="'image'"
+    ></app-annotation-image>
+
+  </ng-container>
 </div>

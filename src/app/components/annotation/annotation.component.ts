@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ICoords } from "../../models/coords.interface";
+import { EAnnotationType, IAnnotation } from "../../models/annotation.interface";
 
 @Component({
   selector: 'app-annotation',
@@ -9,9 +10,11 @@ import { ICoords } from "../../models/coords.interface";
 export class AnnotationComponent {
 
   @Input() coords: ICoords;
+  @Input() type: EAnnotationType;
   @Input() containerBoundaries: {height: number, width: number};
+  @Input() annotation: IAnnotation;
 
-  @ViewChild('annotation') annotationElementRef: ElementRef;
+  @ViewChild('annotationRef') annotationElementRef: ElementRef;
   annotationHtmlElement: HTMLElement;
 
   isDragging: boolean = false;
@@ -19,10 +22,12 @@ export class AnnotationComponent {
   cursorPosition: ICoords;
 
   startDragging(event: MouseEvent) {
-    this.isDragging = true;
-    this.annotationHtmlElement = this.annotationElementRef.nativeElement as HTMLElement;
-    this.cursorPosition = {x: event.clientX, y: event.clientY};
-    this.startElPosition = {x: this.annotationHtmlElement.offsetLeft, y: this.annotationHtmlElement.offsetTop};
+    if((event.target as Element).tagName !== 'INPUT') {
+      this.isDragging = true;
+      this.annotationHtmlElement = this.annotationElementRef.nativeElement as HTMLElement;
+      this.cursorPosition = { x: event.clientX, y: event.clientY };
+      this.startElPosition = { x: this.annotationHtmlElement.offsetLeft, y: this.annotationHtmlElement.offsetTop };
+    }
   }
 
   dragging(event: MouseEvent) {
@@ -36,7 +41,7 @@ export class AnnotationComponent {
     this.cursorPosition = {x: event.clientX, y: event.clientY}
   }
 
-  stopDragging(event: MouseEvent) {
+  stopDragging() {
     this.isDragging = false;
   }
 }

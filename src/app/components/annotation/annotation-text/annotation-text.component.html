@@ -1,1 +1,13 @@
-<p>annotation-text works!</p>
+<div class="wrapper">
+  <input
+    type="text"
+    (keyup.enter)="updateText()"
+    (blur)="updateText()"
+    [formControl]="inputField"
+    autofocus
+    *ngIf="!annotation.content || !annotation.content.length; else content"
+  >
+  <ng-template #content>
+    <p>{{annotation.content}}</p>
+  </ng-template>
+</div>

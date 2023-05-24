@@ -4,7 +4,7 @@ import { ICoords } from "../../models/coords.interface";
 import { DynamicChildLoaderDirective } from "../../directives/dynamic-child-loader.directive";
 import { AnnotationSelectComponent } from "../annotation-select/annotation-select.component";
 import { AnnotationComponent } from "../annotation/annotation.component";
-import { EAnnotationType } from "../../models/annotation.interface";
+import { IAnnotation } from "../../models/annotation.interface";
 
 
 @Component({
@@ -29,7 +29,7 @@ export class DocumentContainerComponent {
     this.annotationSelectRef.setInput('coords', coords);
     this.annotationSelectRef.instance.createAnnotationEmitter.subscribe(annotation => {
       this.destroyDynamicAnnotation();
-      this.loadDynamicAnnotation(coords, annotation.type);
+      this.loadDynamicAnnotation(annotation);
     })
   }
   private destroyDynamicAnnotation() {
@@ -38,9 +38,11 @@ export class DocumentContainerComponent {
     this.annotationSelectRef.destroy();
   }
 
-  private loadDynamicAnnotation(coords: ICoords, type: EAnnotationType) {
+  private loadDynamicAnnotation(annotation: IAnnotation) {
     this.annotationRef = this.dynamicChild.viewContainerRef.createComponent(AnnotationComponent);
-    this.annotationRef.setInput('coords', coords);
+    this.annotationRef.setInput('coords', annotation.position);
+    this.annotationRef.setInput('type', annotation.type);
+    this.annotationRef.setInput('annotation', annotation);
     this.annotationRef.setInput('containerBoundaries',
       {
         width: (this.documentContainer.nativeElement as HTMLElement).offsetWidth,

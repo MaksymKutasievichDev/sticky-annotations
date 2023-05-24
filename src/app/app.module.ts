@@ -11,6 +11,7 @@ import { AnnotationSelectComponent } from "./components/annotation-select/annota
 import { AnnotationComponent } from './components/annotation/annotation.component';
 import { AnnotationTextComponent } from './components/annotation/annotation-text/annotation-text.component';
 import { AnnotationImageComponent } from './components/annotation/annotation-image/annotation-image.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AnnotationImageComponent } from './components/annotation/annotation-ima
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

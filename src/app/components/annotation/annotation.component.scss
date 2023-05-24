@@ -1,7 +1,8 @@
 .annotation{
   position: absolute;
   padding: 20px;
-  background: aquamarine;
+  background: #86BAA1;
+  border-radius: 4px;
 }
 
 .annotation.dragging::after {
