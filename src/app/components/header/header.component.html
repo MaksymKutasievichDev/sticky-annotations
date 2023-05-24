@@ -1,9 +1,18 @@
 <header>
   <div class="container">
     <div class="header__items">
-      <p class="title">App title</p>
-      <div class="zoom_options">
-        zoom options
+      <p class="title" routerLink="/">StickyAnnotations</p>
+      <div class="toolbar">
+        <div class="zoom_options">
+          {{zoomValue$ | async}}
+          <div class="zoom_btns">
+            <button (click)="addZoom()">+</button>
+            <button (click)="decraseZoom()">-</button>
+          </div>
+        </div>
+        <div class="save_btn">
+          <button (click)="saveAnnotations()">Save</button>
+        </div>
       </div>
     </div>
   </div>

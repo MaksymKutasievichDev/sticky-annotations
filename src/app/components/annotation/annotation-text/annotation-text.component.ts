@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { IAnnotation } from "../../../models/annotation.interface";
+import { AnnotationsService } from "../../../services/annotations.service";
 
 @Component({
   selector: 'app-annotation-text',
@@ -14,7 +15,12 @@ export class AnnotationTextComponent {
   @Input() annotation: IAnnotation;
   @Output() updatedTextEmitter = new EventEmitter<string>();
 
+  constructor(
+    private annotationService: AnnotationsService
+  ) {
+  }
+
   updateText() {
-    this.updatedTextEmitter.emit(this.inputField.value);
+    this.annotationService.updateAnnotationContent(this.annotation.id, this.inputField.value);
   }
 }

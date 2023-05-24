@@ -1,11 +1,15 @@
 import { ICoords } from "./coords.interface";
 
 export interface IAnnotation {
+  id: number;
   type: EAnnotationType;
   content: string;
-  page: number;
+  pageId: number;
+  documentId: number;
   position: ICoords;
 }
+
+export type IAnnotationCreation = Omit<IAnnotation, 'id' | 'documentId' | 'pageId' | 'content'>
 
 export enum EAnnotationType {
   TEXT = 'text',

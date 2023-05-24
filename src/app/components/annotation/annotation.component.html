@@ -7,19 +7,24 @@
   (mouseup)="stopDragging()"
   (mouseout)="stopDragging()"
   [ngStyle]="{
-    'left': coords.x + 'px',
-    'top': coords.y + 'px'
+    'left': coords.x + '%',
+    'top': coords.y + '%'
   }"
 >
+  <div class="delete" (click)="delete()">
+    <img src="./assets/icons/x-mark.png" alt="x-mark">
+  </div>
   <ng-container [ngSwitch]="type">
 
     <app-annotation-text
       [annotation]="annotation"
+      [ngClass]="{'no_cursor_events': !!annotation.content.length}"
       *ngSwitchCase="'text'"
     ></app-annotation-text>
 
     <app-annotation-image
       [annotation]="annotation"
+      [ngClass]="{'no_cursor_events': !!annotation.content.length}"
       *ngSwitchCase="'image'"
     ></app-annotation-image>
 

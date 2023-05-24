@@ -3,6 +3,27 @@
   padding: 20px;
   background: #86BAA1;
   border-radius: 4px;
+
+  .delete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-110%, -110%);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: black;
+    border-radius: 50%;
+    cursor: pointer;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
 .annotation.dragging::after {

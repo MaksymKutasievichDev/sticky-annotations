@@ -1,13 +1,23 @@
-<div class="wrapper">
 <div
-  class="document_container"
-  (mousedown)="documentClick($event)"
-  #documentContainer
+  class="wrapper"
+  [ngStyle]="{'width': (zoomValue$ | async) + '%'}"
 >
-  <ng-template dynamicChildLoader></ng-template>
-  <img
-    src="assets/pages/{{contentImage}}"
-    alt=""
+  <div
+    class="document_container"
+    (mousedown)="documentClick($event)"
+    #documentContainer
   >
-</div>
+    <ng-template dynamicChildLoader></ng-template>
+    <img
+      src="assets/pages/{{contentImage}}"
+      alt=""
+    >
+    <app-annotation
+      *ngFor="let annotation of (annotations$ | async)"
+      [annotation]="annotation"
+      [coords]="annotation.position"
+      [type]="annotation.type"
+      [containerBoundaries]="{width: documentContainer.offsetWidth, height: documentContainer.offsetHeight}"
+    ></app-annotation>
+  </div>
 </div>

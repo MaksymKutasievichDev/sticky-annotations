@@ -7,7 +7,6 @@ import { IDocument } from "../models/document.interface";
 })
 export class ServerDataService {
   getDocuments(): IDocument[] {
-    console.log(JSONData)
     return JSONData;
   }
 

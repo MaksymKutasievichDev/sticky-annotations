@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICoords } from "../../models/coords.interface";
-import { EAnnotationType, IAnnotation } from "../../models/annotation.interface";
+import { EAnnotationType, IAnnotationCreation } from "../../models/annotation.interface";
 import { annotationOptionsConst, IAnnotationsOptions } from "../../constants/annotation-options";
 
 @Component({
@@ -15,15 +15,13 @@ export class AnnotationSelectComponent {
   @Input() coords: ICoords;
   @Input() page: number;
 
-  @Output() createAnnotationEmitter: EventEmitter<IAnnotation> = new EventEmitter<IAnnotation>();
+  @Output() createAnnotationEmitter: EventEmitter<IAnnotationCreation> = new EventEmitter<IAnnotationCreation>();
 
   constructor() { }
 
   public createAnnotation(type: EAnnotationType) {
     this.createAnnotationEmitter.emit({
       type,
-      content: '',
-      page: this.page,
       position: {
         x: this.coords.x,
         y: this.coords.y

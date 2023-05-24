@@ -22,7 +22,6 @@ export class PagesComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.pipe(first()).subscribe(params => {
       this.document = this.serverDataService.getDocumentById(parseInt(params['id']));
-      console.log(this.document)
     })
   }
 

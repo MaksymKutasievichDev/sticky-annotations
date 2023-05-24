@@ -1,10 +1,13 @@
-import { Component, ComponentRef, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+
+import { map, Observable } from "rxjs";
 
 import { ICoords } from "../../models/coords.interface";
 import { DynamicChildLoaderDirective } from "../../directives/dynamic-child-loader.directive";
 import { AnnotationSelectComponent } from "../annotation-select/annotation-select.component";
-import { AnnotationComponent } from "../annotation/annotation.component";
 import { IAnnotation } from "../../models/annotation.interface";
+import { AnnotationsService } from "../../services/annotations.service";
+import { ZoomService } from "../../services/zoom.service";
 
 
 @Component({
@@ -12,9 +15,14 @@ import { IAnnotation } from "../../models/annotation.interface";
   templateUrl: './document-container.component.html',
   styleUrls: ['./document-container.component.scss']
 })
-export class DocumentContainerComponent {
+export class DocumentContainerComponent implements OnInit {
+
+  annotations$: Observable<IAnnotation[]>;
+  zoomValue$: Observable<number>;
 
   @Input() contentImage: string;
+  @Input() pageId: number;
+  @Input() documentId: number;
 
   @ViewChild(DynamicChildLoaderDirective, { static: true })
   dynamicChild!: DynamicChildLoaderDirective;
@@ -23,7 +31,23 @@ export class DocumentContainerComponent {
 
   isAnnotationModalActive: boolean = false;
   annotationSelectRef: ComponentRef<AnnotationSelectComponent>;
-  annotationRef: ComponentRef<AnnotationComponent>;
+
+  constructor(
+    private annotationService: AnnotationsService,
+    private zoomService: ZoomService
+  ) {
+  }
+
+  ngOnInit() {
+    this.annotations$ = this.annotationService.annotations$.pipe(
+      map(annotations => {
+        return annotations.filter(annotation =>
+          annotation.pageId === this.pageId && annotation.documentId === this.documentId
+        )
+      })
+    );
+    this.zoomValue$ = this.zoomService.zoomValue$;
+  }
 
   private loadDynamicAnnotationSelection(coords: ICoords) {
     this.isAnnotationModalActive = true;
@@ -31,33 +55,22 @@ export class DocumentContainerComponent {
     this.annotationSelectRef.setInput('coords', coords);
     this.annotationSelectRef.instance.createAnnotationEmitter.subscribe(annotation => {
       this.destroyDynamicAnnotation();
-      this.loadDynamicAnnotation(annotation);
+      this.annotationService.createAnnotation(annotation, this.pageId, this.documentId)
     });
   }
-  private destroyDynamicAnnotation() {
+  public destroyDynamicAnnotation() {
     this.isAnnotationModalActive = false;
     this.annotationSelectRef.instance.createAnnotationEmitter.unsubscribe();
     this.annotationSelectRef.destroy();
   }
 
-  private loadDynamicAnnotation(annotation: IAnnotation) {
-    this.annotationRef = this.dynamicChild.viewContainerRef.createComponent(AnnotationComponent);
-    this.annotationRef.setInput('coords', annotation.position);
-    this.annotationRef.setInput('type', annotation.type);
-    this.annotationRef.setInput('annotation', annotation);
-    this.annotationRef.setInput('containerBoundaries',
-      {
-        width: (this.documentContainer.nativeElement as HTMLElement).offsetWidth,
-        height: (this.documentContainer.nativeElement as HTMLElement).offsetHeight
-      }
-    )
-  }
-
   public documentClick(event: MouseEvent) {
     const target = event.target as Element;
     if(target.classList.contains('document_container')) {
-      console.log({x: event.offsetX, y: event.offsetY})
-      const coords: ICoords = {x: event.offsetX, y: event.offsetY};
+      const coords: ICoords = {
+        x: (event.offsetX * 100)/(this.documentContainer.nativeElement as HTMLElement).offsetWidth,
+        y: (event.offsetY * 100)/(this.documentContainer.nativeElement as HTMLElement).offsetHeight
+      };
       if(!this.isAnnotationModalActive){
         this.loadDynamicAnnotationSelection(coords);
       } else {

@@ -6,5 +6,7 @@
     (change)="transformToString($event)"
     (click)="$event.stopPropagation()"
   >
-  <img *ngIf="annotation.content" [src]="annotation.content" alt="your image"/>
+  <div class="img_wrapp">
+    <img *ngIf="annotation.content" [src]="annotation.content" alt="your image"/>
+  </div>
 </div>

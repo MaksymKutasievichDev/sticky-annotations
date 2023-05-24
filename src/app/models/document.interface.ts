@@ -1,8 +1,8 @@
 export interface IDocument {
-  id: number,
-  name: string,
+  id: number;
+  name: string;
   pages: {
-    page: number,
-    image: string
+    page: number;
+    image: string;
   }[]
 }

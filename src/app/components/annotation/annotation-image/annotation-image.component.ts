@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IAnnotation } from "../../../models/annotation.interface";
+import { AnnotationsService } from "../../../services/annotations.service";
 
 @Component({
   selector: 'app-annotation-image',
@@ -8,14 +9,18 @@ import { IAnnotation } from "../../../models/annotation.interface";
 })
 export class AnnotationImageComponent {
   @Input() annotation: IAnnotation;
-  @Output() updatedTextEmitter = new EventEmitter<string>();
+
+  constructor(
+    private annotationService: AnnotationsService
+  ) {
+  }
+
   transformToString(event: any): void {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.updatedTextEmitter.emit(reader.result! as string);
-        console.log(reader.result! as string)
+        this.annotationService.updateAnnotationContent(this.annotation.id, reader.result! as string)
       }
       reader.readAsDataURL(file);
     }

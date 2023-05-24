@@ -2,5 +2,7 @@
   <app-document-container
     *ngFor="let page of document.pages"
     [contentImage]="page.image"
+    [pageId]="page.page"
+    [documentId]="document.id"
   ></app-document-container>
 </div>

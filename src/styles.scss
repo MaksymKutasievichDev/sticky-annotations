@@ -13,4 +13,9 @@
 
 body{
   background: #EDEAD0;
+  padding-top: 70px;
+}
+
+.no_cursor_events{
+  pointer-events: none;
 }
