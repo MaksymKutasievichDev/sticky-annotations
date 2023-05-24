@@ -2,26 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
 
-## Development server
+## General Approach
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To handle dragg functionality were created 3 functions for mouse down, mouse move, and, mouse up events. On mouse down isDragging flag is changed to true and mouse move takes its action. Every annotation move will update the annotation object, which is saved inside AnnotationService. On mouse up isDragging flag will turn to false and the mouse move action will be blocked. The observable pattern approach was used to save and share data (zoom value, annotations) between various components.
 
-## Code scaffolding
+## Pros and Cons
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The pros:
+ * Simplicity;
+ * Flexibility: The component accepts input properties that provide the necessary information for dragging, such as coordinates, container boundaries, and annotation data. This allows for customization and flexibility in how the dragging functionality is used and configured.
 
-## Build
+The cons:
+ * The dragging logic is directly implemented within the component itself, which may hinder code reusability and maintainability;
+ * No support for touch devices
+ * Frequency and complexity of the dragging calculations can impact perfomance
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Screenshots
 
-## Running unit tests
+![OB6P566RTZ](https://github.com/MaksymKutasievichDev/sticky-annotations/assets/119333627/9333e0ae-8ee1-45c9-b8fb-67600bf0d0b3)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![firefox_LEhzO2b9Ts](https://github.com/MaksymKutasievichDev/sticky-annotations/assets/119333627/ce027145-41a5-44c3-b51e-6de73dd8d265)
 
-## Running end-to-end tests
+![firefox_lVscquzeZX](https://github.com/MaksymKutasievichDev/sticky-annotations/assets/119333627/40c34495-8aa3-47b2-a81e-c19d3739fb0a)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![firefox_McUtomowOU](https://github.com/MaksymKutasievichDev/sticky-annotations/assets/119333627/a586d0af-747a-43d5-ac1f-0ca38e675d8b)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Save button output:
+![firefox_19SV7bq7ir](https://github.com/MaksymKutasievichDev/sticky-annotations/assets/119333627/9d709b42-7c3b-4024-94dc-60bc4da439ab)
