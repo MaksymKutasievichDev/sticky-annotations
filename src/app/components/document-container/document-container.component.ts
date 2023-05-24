@@ -1,8 +1,4 @@
-import {
-  Component,
-  ComponentRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, ComponentRef, ElementRef, ViewChild } from '@angular/core';
 
 import { ICoords } from "../../models/coords.interface";
 import { DynamicChildLoaderDirective } from "../../directives/dynamic-child-loader.directive";
@@ -21,16 +17,17 @@ export class DocumentContainerComponent {
   @ViewChild(DynamicChildLoaderDirective, { static: true })
   dynamicChild!: DynamicChildLoaderDirective;
 
+  @ViewChild('documentContainer') documentContainer: ElementRef;
+
   isAnnotationModalActive: boolean = false;
   annotationSelectRef: ComponentRef<AnnotationSelectComponent>;
-  annotationsRef: ComponentRef<AnnotationComponent>;
+  annotationRef: ComponentRef<AnnotationComponent>;
 
   private loadDynamicAnnotationSelection(coords: ICoords) {
     this.isAnnotationModalActive = true;
     this.annotationSelectRef = this.dynamicChild.viewContainerRef.createComponent(AnnotationSelectComponent);
     this.annotationSelectRef.setInput('coords', coords);
     this.annotationSelectRef.instance.createAnnotationEmitter.subscribe(annotation => {
-      console.log(annotation);
       this.destroyDynamicAnnotation();
       this.loadDynamicAnnotation(coords, annotation.type);
     })
@@ -42,12 +39,17 @@ export class DocumentContainerComponent {
   }
 
   private loadDynamicAnnotation(coords: ICoords, type: EAnnotationType) {
-    this.annotationsRef = this.dynamicChild.viewContainerRef.createComponent(AnnotationComponent);
-    this.annotationsRef.setInput('coords', coords);
+    this.annotationRef = this.dynamicChild.viewContainerRef.createComponent(AnnotationComponent);
+    this.annotationRef.setInput('coords', coords);
+    this.annotationRef.setInput('containerBoundaries',
+      {
+        width: (this.documentContainer.nativeElement as HTMLElement).offsetWidth,
+        height: (this.documentContainer.nativeElement as HTMLElement).offsetHeight
+      }
+    )
   }
 
   public documentClick(event: MouseEvent) {
-    console.log(event.target)
     const target = event.target as Element;
     if(target.classList.contains('document_container')) {
       const coords: ICoords = {x: event.offsetX, y: event.offsetY};

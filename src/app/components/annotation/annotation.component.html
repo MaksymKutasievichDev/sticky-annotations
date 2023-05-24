@@ -1,5 +1,11 @@
 <div
   class="annotation"
+  [ngClass]="{'dragging': isDragging}"
+  #annotation
+  (mousedown)="startDragging($event)"
+  (mousemove)="isDragging ? dragging($event) : ''"
+  (mouseup)="stopDragging($event)"
+  (mouseout)="stopDragging($event)"
   [ngStyle]="{
     'left': coords.x + 'px',
     'top': coords.y + 'px'

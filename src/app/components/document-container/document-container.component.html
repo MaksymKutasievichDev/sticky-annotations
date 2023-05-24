@@ -1,6 +1,9 @@
 <div
   class="document_container"
-  (click)="documentClick($event)"
+  (mousedown)="documentClick($event)"
+  #documentContainer
 >
-  <ng-template dynamicChildLoader></ng-template>
+  <ng-template
+    dynamicChildLoader
+  ></ng-template>
 </div>

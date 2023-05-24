@@ -21,7 +21,7 @@ import { AnnotationImageComponent } from './components/annotation/annotation-ima
     DynamicChildLoaderDirective,
     AnnotationComponent,
     AnnotationTextComponent,
-    AnnotationImageComponent
+    AnnotationImageComponent,
   ],
   imports: [
     BrowserModule,
