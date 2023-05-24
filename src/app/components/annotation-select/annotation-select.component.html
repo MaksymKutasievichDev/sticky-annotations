@@ -1,0 +1,20 @@
+<div
+  class="annotation_select"
+  [ngStyle]="{
+    'left': coords.x + 'px',
+    'top': coords.y + 'px'
+  }"
+>
+  <div
+    class="annotation_option"
+    *ngFor="let annotationType of annotationOptions"
+    (click)="createAnnotation(annotationType.type)"
+  >
+    <img
+      [ngSrc]="'./assets/icons/' + annotationType.icon"
+      width="20"
+      height="20"
+      alt="{{annotationType.type}}"
+    >
+  </div>
+</div>

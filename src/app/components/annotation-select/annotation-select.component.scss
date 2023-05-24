@@ -1,0 +1,15 @@
+.annotation_select{
+  padding: 8px;
+  background: #33802e;
+  color: white;
+  border-radius: 8px;
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  .annotation_option{
+    cursor: pointer;
+    height: 20px;
+  }
+}
