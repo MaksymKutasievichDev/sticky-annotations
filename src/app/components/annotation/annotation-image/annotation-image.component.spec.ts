@@ -1,23 +1,58 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AnnotationImageComponent } from './annotation-image.component';
+import { AnnotationsService } from '../../../services/annotations.service';
+import { EAnnotationType, IAnnotation } from '../../../models/annotation.interface';
 
 describe('AnnotationImageComponent', () => {
   let component: AnnotationImageComponent;
   let fixture: ComponentFixture<AnnotationImageComponent>;
+  let annotationsServiceMock: jasmine.SpyObj<AnnotationsService>;
+
+  const annotation: IAnnotation = {
+    id: 1,
+    content: 'Initial content',
+    type: EAnnotationType.TEXT,
+    pageId: 1,
+    documentId: 1,
+    position: {
+      x: 0,
+      y: 0
+    }
+  };
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AnnotationImageComponent ]
-    })
-    .compileComponents();
+    const annotationsServiceSpy = jasmine.createSpyObj('AnnotationsService', ['updateAnnotationContent']);
 
+    await TestBed.configureTestingModule({
+      declarations: [AnnotationImageComponent],
+      providers: [
+        { provide: AnnotationsService, useValue: annotationsServiceSpy }
+      ]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(AnnotationImageComponent);
     component = fixture.componentInstance;
+    annotationsServiceMock = TestBed.inject(AnnotationsService) as jasmine.SpyObj<AnnotationsService>;
+    component.annotation = annotation;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should update the annotation content with the image string', () => {
+    const file = new File(['Test content'], 'test.jpg', { type: 'image/jpeg' });
+    const event = {
+      target: {
+        files: [file]
+      }
+    };
+
+    component.transformToString(event);
+
+    expect(annotationsServiceMock.updateAnnotationContent).toHaveBeenCalledWith(annotation.id, jasmine.any(String));
   });
 });
