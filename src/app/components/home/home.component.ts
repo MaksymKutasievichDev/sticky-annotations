@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerDataService } from "../../services/server-data.service";
-import { IDocument } from "../../models/document.interface";
+import { IDocument } from "../../interfaces/document.interface";
 
 @Component({
   selector: 'app-home',

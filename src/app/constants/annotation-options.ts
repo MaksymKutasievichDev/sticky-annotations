@@ -1,4 +1,4 @@
-import { EAnnotationType } from "../models/annotation.interface";
+import { EAnnotationType } from "../interfaces/annotation.interface";
 
 export interface IAnnotationsOptions {
   type: EAnnotationType;

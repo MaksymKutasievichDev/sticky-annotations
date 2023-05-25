@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AnnotationSelectComponent } from './annotation-select.component';
-import { ICoords } from '../../models/coords.interface';
-import { EAnnotationType, IAnnotationCreation } from '../../models/annotation.interface';
+import { ICoords } from '../../interfaces/coords.interface';
+import { EAnnotationType, IAnnotationCreation } from '../../interfaces/annotation.interface';
 
 describe('AnnotationSelectComponent', () => {
   let component: AnnotationSelectComponent;

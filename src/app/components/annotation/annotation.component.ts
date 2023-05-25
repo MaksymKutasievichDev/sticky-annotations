@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ICoords } from "../../models/coords.interface";
-import { EAnnotationType, IAnnotation } from "../../models/annotation.interface";
+import { ICoords } from "../../interfaces/coords.interface";
+import { EAnnotationType, IAnnotation } from "../../interfaces/annotation.interface";
 import { AnnotationsService } from "../../services/annotations.service";
 
 @Component({

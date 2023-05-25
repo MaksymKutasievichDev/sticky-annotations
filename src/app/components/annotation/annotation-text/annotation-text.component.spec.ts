@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnnotationTextComponent } from './annotation-text.component';
 import { AnnotationsService } from '../../../services/annotations.service';
-import { EAnnotationType, IAnnotation } from '../../../models/annotation.interface';
+import { EAnnotationType, IAnnotation } from '../../../interfaces/annotation.interface';
 
 describe('AnnotationTextComponent', () => {
   let component: AnnotationTextComponent;

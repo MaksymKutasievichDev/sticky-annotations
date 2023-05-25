@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AnnotationsService } from './annotations.service';
-import { EAnnotationType, IAnnotation, IAnnotationCreation } from '../models/annotation.interface';
-import { ICoords } from '../models/coords.interface';
+import { EAnnotationType, IAnnotation, IAnnotationCreation } from '../interfaces/annotation.interface';
+import { ICoords } from '../interfaces/coords.interface';
 
 describe('AnnotationsService', () => {
   let service: AnnotationsService;

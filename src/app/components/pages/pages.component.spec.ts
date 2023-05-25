@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ServerDataService } from '../../services/server-data.service';
-import { IDocument } from '../../models/document.interface';
+import { IDocument } from '../../interfaces/document.interface';
 import { of } from 'rxjs';
 
 describe('PagesComponent', () => {

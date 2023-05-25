@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ServerDataService } from './server-data.service';
-import { IDocument } from '../models/document.interface';
+import { IDocument } from '../interfaces/document.interface';
 
 describe('ServerDataService', () => {
   let service: ServerDataService;

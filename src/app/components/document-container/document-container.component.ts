@@ -2,10 +2,10 @@ import { Component, ComponentRef, ElementRef, Input, OnInit, ViewChild } from '@
 
 import { map, Observable } from "rxjs";
 
-import { ICoords } from "../../models/coords.interface";
+import { ICoords } from "../../interfaces/coords.interface";
 import { DynamicChildLoaderDirective } from "../../directives/dynamic-child-loader.directive";
 import { AnnotationSelectComponent } from "../annotation-select/annotation-select.component";
-import { IAnnotation } from "../../models/annotation.interface";
+import { IAnnotation } from "../../interfaces/annotation.interface";
 import { AnnotationsService } from "../../services/annotations.service";
 import { ZoomService } from "../../services/zoom.service";
 

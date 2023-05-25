@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AnnotationImageComponent } from './annotation-image.component';
 import { AnnotationsService } from '../../../services/annotations.service';
-import { EAnnotationType, IAnnotation } from '../../../models/annotation.interface';
+import { EAnnotationType, IAnnotation } from '../../../interfaces/annotation.interface';
 
 describe('AnnotationImageComponent', () => {
   let component: AnnotationImageComponent;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IAnnotation } from "../../../models/annotation.interface";
+import { IAnnotation } from "../../../interfaces/annotation.interface";
 import { AnnotationsService } from "../../../services/annotations.service";
 
 @Component({

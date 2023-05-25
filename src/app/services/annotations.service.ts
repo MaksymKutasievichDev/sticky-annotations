@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { IAnnotation, IAnnotationCreation } from "../models/annotation.interface";
+import { IAnnotation, IAnnotationCreation } from "../interfaces/annotation.interface";
 import { BehaviorSubject } from "rxjs";
-import { ICoords } from "../models/coords.interface";
+import { ICoords } from "../interfaces/coords.interface";
 
 @Injectable({
   providedIn: 'root'
