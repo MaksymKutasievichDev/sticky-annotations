@@ -12,7 +12,10 @@ Overall, this approach efficiently handles the drag functionality by appropriate
 
 ## Advantages of this approach
 
-The drag functionality in the code demonstrates simplicity, readability, and modularity. The clear organization of functions (startDragging, dragging, stopDragging) improves code comprehension and maintenance. The AnnotationComponent encapsulates the drag functionality, enabling easy integration into other parts of the application and reducing code duplication. Efficient calculations ensure that the dragged annotation stays within container boundaries, with percentage-based coordinates enhancing responsiveness. Integration with AnnotationService separates concerns and enhances maintainability.
+* Simplicity and Readability: the functions `startDragging`, `dragging`, and `stopDragging` clearly define the different stages of the drag operation, improving code organization and readability;
+* Modularity and Reusability: the drag functionality is encapsulated within the `AnnotationComponent`, making it a self-contained and reusable component;
+* Integration with `AnnotationService`: the code utilizes the `AnnotationsService` to update the annotation's coordinates when dragging is stopped;
+* Event Handling and Input Properties: the code effectively handles the mouse events (`startDragging`, `dragging`, `stopDragging`) to initiate and stop the drag operation. It also utilizes input properties (`coords`, `type`, `containerBoundaries`, `annotation`) to provide the necessary data for the dragging functionality. This promotes flexibility and allows for easy customization and integration with other components.
 
 ## Screenshots
 
