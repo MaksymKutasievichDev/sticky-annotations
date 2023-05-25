@@ -4,18 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## General Approach
 
-To handle dragg functionality were created 3 functions for mouse down, mouse move, and, mouse up events. On mouse down isDragging flag is changed to true and mouse move takes its action. Every annotation move will update the annotation object, which is saved inside AnnotationService. On mouse up isDragging flag will turn to false and the mouse move action will be blocked. The observable pattern approach was used to save and share data (zoom value, annotations) between various components.
+To handle the drag functionality, three functions were created to handle the mouse down, mouse move, and mouse up events. When the mouse is clicked down, the isDragging flag is set to true, allowing the dragging action to take place. The mouse move function is responsible for updating the annotation object as the annotation is moved, and this updated object is then saved within the AnnotationService.
 
-## Pros and Cons
+When the mouse button is released, the isDragging flag is set to false, indicating that dragging is no longer taking place, and the mouse move action is blocked. The implementation follows an observable pattern approach to facilitate the sharing and storage of data, such as the zoom value and annotations, among various components.
 
-The pros:
- * Simplicity;
- * Flexibility: The component accepts input properties that provide the necessary information for dragging, such as coordinates, container boundaries, and annotation data. This allows for customization and flexibility in how the dragging functionality is used and configured.
+Overall, this approach efficiently handles the drag functionality by appropriately updating the necessary flags and objects during the mouse events. The use of the observable pattern enhances the reusability and maintainability of the code, allowing for seamless data sharing between different components.
 
-The cons:
- * The dragging logic is directly implemented within the component itself, which may hinder code reusability and maintainability;
- * No support for touch devices
- * Frequency and complexity of the dragging calculations can impact perfomance
+## Adventages of this approach
+
+The drag functionality in the code demonstrates simplicity, readability, and modularity. The clear organization of functions (startDragging, dragging, stopDragging) improves code comprehension and maintenance. The AnnotationComponent encapsulates the drag functionality, enabling easy integration into other parts of the application and reducing code duplication. Efficient calculations ensure that the dragged annotation stays within container boundaries, with percentage-based coordinates enhancing responsiveness. Integration with AnnotationService separates concerns and enhances maintainability.
 
 ## Screenshots
 
