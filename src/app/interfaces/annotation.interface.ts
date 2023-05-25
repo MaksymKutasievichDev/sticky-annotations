@@ -7,6 +7,7 @@ export interface IAnnotation {
   pageId: number;
   documentId: number;
   position: ICoords;
+  opacity?: number;
 }
 
 export type IAnnotationCreation = Omit<IAnnotation, 'id' | 'documentId' | 'pageId' | 'content'>
