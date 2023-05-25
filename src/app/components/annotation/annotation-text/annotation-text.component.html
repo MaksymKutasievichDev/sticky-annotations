@@ -1,11 +1,11 @@
 <div class="wrapper">
   <input
+    *ngIf="!annotation.content?.length; else content"
     type="text"
+    autofocus
+    [formControl]="inputField"
     (keyup.enter)="updateText()"
     (blur)="updateText()"
-    [formControl]="inputField"
-    autofocus
-    *ngIf="!annotation.content || !annotation.content.length; else content"
   >
   <ng-template #content>
     <p>{{annotation.content}}</p>

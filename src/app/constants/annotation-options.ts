@@ -5,7 +5,7 @@ export interface IAnnotationsOptions {
   icon: string;
 }
 
-export const annotationOptionsConst: IAnnotationsOptions[] = [
+export const ANNOTATIONS_OPTIONS: IAnnotationsOptions[] = [
   {
     type: EAnnotationType.TEXT,
     icon: 'text-ico.png'

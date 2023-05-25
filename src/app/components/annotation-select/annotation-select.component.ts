@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICoords } from "../../interfaces/coords.interface";
 import { EAnnotationType, IAnnotationCreation } from "../../interfaces/annotation.interface";
-import { annotationOptionsConst, IAnnotationsOptions } from "../../constants/annotation-options";
+import { ANNOTATIONS_OPTIONS, IAnnotationsOptions } from "../../constants/annotation-options";
 
 @Component({
   selector: 'app-annotation-select',
@@ -10,14 +10,12 @@ import { annotationOptionsConst, IAnnotationsOptions } from "../../constants/ann
 })
 export class AnnotationSelectComponent {
 
-  public annotationOptions: IAnnotationsOptions[] = annotationOptionsConst;
+  public annotationOptions: IAnnotationsOptions[] = ANNOTATIONS_OPTIONS;
 
   @Input() coords: ICoords;
   @Input() page: number;
 
   @Output() createAnnotationEmitter: EventEmitter<IAnnotationCreation> = new EventEmitter<IAnnotationCreation>();
-
-  constructor() { }
 
   public createAnnotation(type: EAnnotationType) {
     this.createAnnotationEmitter.emit({

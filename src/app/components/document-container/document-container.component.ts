@@ -27,7 +27,8 @@ export class DocumentContainerComponent implements OnInit {
   @ViewChild(DynamicChildLoaderDirective, { static: true })
   dynamicChild!: DynamicChildLoaderDirective;
 
-  @ViewChild('documentContainer') documentContainer: ElementRef;
+  @ViewChild('documentContainer')
+  documentContainer: ElementRef;
 
   isAnnotationModalActive: boolean = false;
   annotationSelectRef: ComponentRef<AnnotationSelectComponent>;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
-import { first, Subscription } from "rxjs";
+import { first } from "rxjs";
 
 import { ServerDataService } from "../../services/server-data.service";
 import { IDocument } from "../../interfaces/document.interface";
@@ -12,7 +12,6 @@ import { IDocument } from "../../interfaces/document.interface";
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-  private routeSub: Subscription;
   document: IDocument;
   constructor(
     private serverDataService: ServerDataService,
@@ -20,7 +19,7 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.pipe(first()).subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       this.document = this.serverDataService.getDocumentById(parseInt(params['id']));
     })
   }

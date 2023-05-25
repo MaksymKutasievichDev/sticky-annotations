@@ -1,6 +1,6 @@
 <div>
   <input
-    *ngIf="!annotation.content"
+    *ngIf="!annotation.content?.length"
     type="file"
     accept="image/png, image/jpeg"
     (change)="transformToString($event)"

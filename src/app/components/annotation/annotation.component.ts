@@ -15,11 +15,12 @@ export class AnnotationComponent {
   @Input() containerBoundaries: {height: number, width: number};
   @Input() annotation: IAnnotation;
 
-  wasDragged: boolean = false;
+  @ViewChild('annotationRef')
+  annotationElementRef: ElementRef;
 
-  @ViewChild('annotationRef') annotationElementRef: ElementRef;
   annotationHtmlElement: HTMLElement;
 
+  wasDragged: boolean = false;
   isDragging: boolean = false;
   startElPosition: ICoords;
   cursorPosition: ICoords;

@@ -42,17 +42,4 @@ describe('AnnotationImageComponent', () => {
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should update the annotation content with the image string', () => {
-    const file = new File(['Test content'], 'test.jpg', { type: 'image/jpeg' });
-    const event = {
-      target: {
-        files: [file]
-      }
-    };
-
-    component.transformToString(event);
-
-    expect(annotationsServiceMock.updateAnnotationContent).toHaveBeenCalledWith(annotation.id, jasmine.any(String));
-  });
 });

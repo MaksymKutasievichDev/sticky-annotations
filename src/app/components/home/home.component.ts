@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ServerDataService } from "../../services/server-data.service";
 import { IDocument } from "../../interfaces/document.interface";
 
@@ -7,7 +7,7 @@ import { IDocument } from "../../interfaces/document.interface";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   documents: IDocument[];
 
@@ -15,9 +15,6 @@ export class HomeComponent implements OnInit {
     private serverDataService: ServerDataService
   ) {
     this.documents = this.serverDataService.getDocuments();
-  }
-
-  ngOnInit(): void {
   }
 
 }

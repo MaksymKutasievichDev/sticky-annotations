@@ -3,9 +3,9 @@
   [ngStyle]="{'width': (zoomValue$ | async) + '%'}"
 >
   <div
+    #documentContainer
     class="document_container"
     (mousedown)="documentClick($event)"
-    #documentContainer
   >
     <ng-template dynamicChildLoader></ng-template>
     <img
