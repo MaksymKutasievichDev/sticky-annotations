@@ -10,7 +10,7 @@ When the mouse button is released, the isDragging flag is set to false, indicati
 
 Overall, this approach efficiently handles the drag functionality by appropriately updating the necessary flags and objects during the mouse events. The use of the observable pattern enhances the reusability and maintainability of the code, allowing for seamless data sharing between different components.
 
-## Adventages of this approach
+## Advantages of this approach
 
 The drag functionality in the code demonstrates simplicity, readability, and modularity. The clear organization of functions (startDragging, dragging, stopDragging) improves code comprehension and maintenance. The AnnotationComponent encapsulates the drag functionality, enabling easy integration into other parts of the application and reducing code duplication. Efficient calculations ensure that the dragged annotation stays within container boundaries, with percentage-based coordinates enhancing responsiveness. Integration with AnnotationService separates concerns and enhances maintainability.
 
